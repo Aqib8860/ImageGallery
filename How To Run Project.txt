@@ -1,0 +1,11 @@
+1. Enable virtual env.
+
+2. Got to ImageGallery Directory (eg. cd ImageGallery).
+
+3.  Add Database Details in settigs.py file(eg. Host, Username, Database Name, Password, Port). This project used Postgree sql.
+
+4. Run py manage.py makemigrations command.
+
+5. Run py manage.py migrate command.
+
+4. Run py manage.py runserver command.

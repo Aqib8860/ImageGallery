@@ -1,0 +1,24 @@
+{% extends 'mygallery/base.html' %}
+{% block title %}Add Image{% endblock %}
+
+{% block content %}
+<br>
+    <div class="container">
+        <p class="alert alert-success">Hold ctrl for selecting multiple tags</p>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="alert alert-success">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+
+            <table class="table table-lg table-hover table-responsive">
+                {{ form.as_table }}
+            </table>
+            <br>
+            <input type="submit" value="Add Image" class="btn btn-primary btn-block">
+        </form>
+    </div>
+{% endblock %}

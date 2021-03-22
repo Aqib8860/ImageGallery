@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'imagegallery/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'imagegallery/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'imagegallery/css/main.css' %}">
+    <script rel="stylesheet" type="text/css" src="{% static 'imagegallery/js/bootstrap.min.js' %}"></script>
+    <script rel="stylesheet" type="text/css" src="{% static 'imagegallery/js/bootstrap.js' %}"></script>
+    <title>{% block title %} Title {% endblock %}</title>
+</head>
+<body>
+    {% include 'mygallery/navbar.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

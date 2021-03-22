@@ -1,0 +1,77 @@
+{% extends 'mygallery/base.html' %}
+{% block title %}My Gallery{% endblock %}
+{% load static %}
+
+{% block content %}
+
+<br>
+<h1 style="text-align:center">My Gallery</h1>
+<br>
+{% include 'mygallery/tags.html' %}
+{% if request.user.is_authenticated %}
+    <p></p>
+{% else %}
+    <p class="alert alert-danger" style="text-align:center">You have to Login for View Or Add or Filter Images</p>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        {% if result %}
+
+            {% for image in result %}
+
+                <div class="col-sm-4">
+                    {% if request.user.is_authenticated %}
+                        <a href="{{ image.image.url }}">
+
+                            <img class="img img-thumbnail" src="{{ image.image.url }}">
+                            {% else %}
+                            <p class="alert alert-danger">You must Login First!</p>
+                        </a>
+                    {% endif %}
+                    <h5 style="text-align:center">{{ image.name }}</h5><br>
+
+                </div>
+            {% endfor %}
+
+        {% else %}
+        {% for image in images %}
+            <div class="col-sm-4">
+                {% if request.user.is_authenticated %}
+                    <a href="{{ image.image.url }}">
+
+                    <img class="img img-thumbnail" src="{{ image.image.url }}">
+                        {% else %}
+                            <img class="img img-thumbnail" src="{{ image.image.url }}">
+                </a>
+                {% endif %}
+                <h5 style="text-align:center">{{ image.name }}</h5>
+
+
+            </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+    <div class="container">
+        <div class="pagination"  style="float:right">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-primary" href="?page=1">&laquo; First</a>
+                    <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_page }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+</div>
+<br>
+<br>
+{% endblock %}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'imagegallery/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'imagegallery/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'imagegallery/css/main.css' %}">
+    <script rel="stylesheet" type="text/css" src="{% static 'imagegallery/js/bootstrap.min.js' %}"></script>
+    <script rel="stylesheet" type="text/css" src="{% static 'imagegallery/js/bootstrap.js' %}"></script>
+    <title>Register</title>
+</head>
+<style>
+    p a:hover{
+        backgroud-color: white;
+        text-decoration: none;
+    }
+</style>
+<body>
+    {% include 'mygallery/navbar.html' %}
+    <br>
+    {% if messages %}
+        <ul style="color: red">
+            {% for message in messages %}
+                <li style="color: red">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="container">
+    <form class="form" action="" method="POST" >
+        {% csrf_token %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error }}</strong>
+                </div>
+            {% endfor %}
+
+            {% for error in field.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error }}</strong>
+                </div>
+            {% endfor %}
+            <p>
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <small style="color: tomato">{{ field.help_text }}</small>
+                {% endif %}
+
+            </p>
+        {% endfor %}
+        <p  class="mb-o">Already have an account <a href="{% url 'my_gallery:login' %}">Login!</a></p>
+        <input type="submit" class="btn btn-success btn-block" value="Register">
+    </form>
+    </div>
+</body>
+</html>

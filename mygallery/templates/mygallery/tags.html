@@ -1,0 +1,15 @@
+{% load static %}
+
+
+<div class="container">
+    <form class="form" action="{% url 'my_gallery:home' %}" method="POST">
+        {% csrf_token %}
+        {% for tag in tags %}
+            {{ tag.name }}<input type="radio" value="{{ tag.id }}" class="inline-form checkbox" style="margin: 10px" name="filter">
+        {% endfor %}<br><br>
+        <center>
+            <input type="submit" class="btn btn-info" value="Filter Images">
+            <a class="btn btn-info" href="{% url 'my_gallery:home' %}">Remove Filter</a>
+        </center>
+    </form>
+</div>

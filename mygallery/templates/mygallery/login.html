@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+       {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'imagegallery/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'imagegallery/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'imagegallery/css/main.css' %}">
+    <script rel="stylesheet" type="text/css" src="{% static 'imagegallery/js/bootstrap.min.js' %}"></script>
+    <script rel="stylesheet" type="text/css" src="{% static 'imagegallery/js/bootstrap.js' %}"></script>
+    <title>Login</title>
+</head>
+<body>
+    {% include 'mygallery/navbar.html' %}
+    <br>
+    {% for message in messages %}
+        <p class="alert alert-danger">{{ message }}</p>
+    {% endfor %}
+    <div class="container">
+    <form action="" method="POST" class="form form-control">
+        {% csrf_token %}
+        {{ form.as_p }}
+            <p>Don't have an account! <a href="{% url 'my_gallery:register' %}">Register</a></p>
+        <input type="submit" class="btn btn-info" value="Login">
+    </form>
+    </div>
+</body>
+</html>
